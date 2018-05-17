@@ -4,7 +4,6 @@ layout: page
 ---
 ![Profile Image]({{ site.url }}/{{ site.picture }})
 
-li.thick {font-weight:bold;}
 <h2>About me</h2>
 
 <p>热爱计算机编程，热爱Breaking Dance。喜欢以逻辑思维思考事情过程，确是个不折不扣文艺青年。喜爱旅游与享受生活，也想把有限的生命奉献给无限的计算机事业。</p>
@@ -37,7 +36,7 @@ li.thick {font-weight:bold;}
 <h2>比赛经历与获奖</h2>
 
 <ul>
-<li class='thick'}>天池比赛—人工智能辅助糖尿病风险预测</li>
+<li style='font-weight:bold'}>天池比赛—人工智能辅助糖尿病风险预测</li>
 <li>招商银行Fintech精英复赛</li>
 <li>AI-challenge 虚拟股票预测</li>
 <li>天池比赛-IJCAI2017口碑商家客流量预测</li>
