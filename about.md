@@ -36,10 +36,10 @@ layout: page
 <h2>比赛经历与获奖</h2>
 
 <ul>
-<li style='font-weight:bold'}>天池比赛—人工智能辅助糖尿病风险预测</li>
-<li>招商银行Fintech精英复赛</li>
-<li>AI-challenge 虚拟股票预测</li>
-<li>天池比赛-IJCAI2017口碑商家客流量预测</li>
-<li>"英飞凌"训练营荣获卓越工程师</li>
-<li>江南大学电子设计大赛个人二等奖，团体一等奖</li>
+<li style='font-weight:bold'>天池比赛—人工智能辅助糖尿病风险预测</li>
+<li style='font-weight:bold'>招商银行Fintech精英复赛</li>
+<li style='font-weight:bold'>AI-challenge 虚拟股票预测</li>
+<li style='font-weight:bold'>天池比赛-IJCAI2017口碑商家客流量预测</li>
+<li style='font-weight:bold'>"英飞凌"训练营荣获卓越工程师</li>
+<li style='font-weight:bold'>江南大学电子设计大赛个人二等奖，团体一等奖</li>
 </ul>
