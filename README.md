@@ -1,4 +1,6 @@
-#Fantastic Ethan#
+#Fantastic Ethan
+
+---
 
 This is my blog, which mainly records daily learning, competition experience, essays, etc.
 
