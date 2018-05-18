@@ -26,20 +26,40 @@ layout: page
 </ul>
 
 
-<h2>科研经历</h2>
+<h2>Academic</h2>
 
 <ul>
 	<li><a href="https://github.com/">基于多分支随机干扰网络的目标追踪算法</a></li>
 	<li><a href="https://github.com/">Fyramid Square with Laplace</a></li>
 </ul>
 
-<h2>比赛经历与获奖</h2>
+<h2>Competition and Reward</h2>
+1. **天池比赛—人工智能辅助糖尿病风险预测**
 
-<ul>
-<li style='font-weight:bold'>天池比赛—人工智能辅助糖尿病风险预测</li>
-<li style='font-weight:bold'>招商银行Fintech精英复赛</li>
-<li style='font-weight:bold'>AI-challenge 虚拟股票预测</li>
-<li style='font-weight:bold'>天池比赛-IJCAI2017口碑商家客流量预测</li>
-<li style='font-weight:bold'>"英飞凌"训练营荣获卓越工程师</li>
-<li style='font-weight:bold'>江南大学电子设计大赛个人二等奖，团体一等奖</li>
+ _排名75/2522，基于XGBboost/RandomForest/Dart 进行模型融合，异常值的后剪枝操作。_
+ 
+2. **招商银行Fintech精英复赛-现金流预测**
+
+ _排名TOP2，细分类，规则模型。_
+
+3. **AI-challenge 虚拟股票预测**
+
+ _排名 周第4，纯脱敏数据，加权后的Boost模型，为了防止过拟合需要做很多特征选择工作。_
+
+4. **天池比赛-IJCAI2017口碑商家客流量预测**
+
+ _排名 前12%，爬虫获得额外数据，基于时序模型分析实现。_
+
+5. **"英飞凌"训练营荣获卓越工程师**
+
+6. **江南大学电子设计大赛个人二等奖，团体一等奖**
+
+<h2>Contact</h2>
+
+<ul class="skill-list">
+    <li>QQ：5279738</li>
+    <li>Wechat:Ethan</li>
+    <li>E-mail:zyp199301@126.com</li>
+    <li><a href="https://github.com/FantasticEthan">Github:Fantastic Ethan</li>
 </ul>
+
