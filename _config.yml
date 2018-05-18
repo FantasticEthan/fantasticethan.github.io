@@ -1,5 +1,5 @@
 # main text of home
-name: Bboy Ethan
+name: Fantastic Ethan
 bio: A Man who dances with meachine learning and data mining
 
 # twitter summary info
@@ -16,7 +16,7 @@ resume: true
 resume-external: true
 resume-url: https://google.com/?q=my+resume
 
-url: https://bboyethan.github.io
+url: https://fantasticethan.github.io
 # your url: http://USERNAME.github.io
 
 permalink: /:title/
@@ -37,12 +37,12 @@ permalink: /:title/
 #facebook: myfacebook
 #twitter: mytwitter
 # google: mygoogle
-instagram: bboyethan
+instagram: ethan_8precepts
 # pinterest: mypinterest
 # linkedin: mylinkedin
 # youtube: myyoutube
 # spotify: myspotify
-github: mygithub
+github: FantasticEthan
 # lastfm: mylastfm
 # stackoverflow: 7044681/mystackoverflow
 # quora: userquora
@@ -54,7 +54,7 @@ email: zyp199301@126.com
 
 authors:
     Ethan:
-        name: Bboy Ethan
+        name: Fantastic Ethan
         bio: A Man who dances with meachine learning and data mining
         external-image: false
         picture: assets/images/profile.jpg
