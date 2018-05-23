@@ -1,5 +1,5 @@
 ---
-title: "[Leetcode]Bit Manipulation题目解析与探索"
+title: "[LeetCode]Bit Manipulation题目解析与探索"
 layout: post
 date: 2018-05-23 10:41
 image: /assets/images/markdown.jpg
@@ -14,9 +14,24 @@ description: 对于Bit Manipulation问题的解析与探索
 # jemoji: '<img class="emoji" title=":ramen:" alt=":ramen:" src="https://assets.github.com/images/icons/emoji/unicode/1f35c.png" height="20" width="20" align="absmiddle">'
 ---
 
-## 题目:
+## Bit Manipulation 位运算
 
-Leetcode中Bit Manipulation类问题，基本都利用位运算解决，效率很高，但是trick没做过的话会很难想。先对典型问题分析，Single Number问题。
+Leetcode中Bit Manipulation类问题，基本都利用位运算解决，效率很高，但是trick没做过的话会很难想。
+
+###位运算基本操作
+基本操作是位运算的基础。
+1. 设置交集 A | B
+2. 设置并集 A & B
+3. 减法操作 A & ~B
+4. 非操作 ~A
+5. 设置A的某位为‘1’ A|= 1<<bit
+6. 清除A的某位 A&~(1<<bit)
+7. 测试A的某位是否为0或1 (A & 1 <<bit)!=0
+8. 提取最后一个'1' A&-A(注意这里是补码) 或者 A & ~(A-1) 或者 A^(A&(A-1))
+9. 消除A的最后一个‘1’ A&(A-1)
+10. 获得全‘1’  ~0
+
+先对典型问题分析，Single Number问题。
 
 ### Single Number问题
 - [Single Number](https://leetcode.com/problems/single-number/)
@@ -84,9 +99,9 @@ class Solution:
 {% endhighlight %}
 
 而对于第三类问题有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式。问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
-- [a⊕0=a]
-- [a⊕a=0]
-- [a⊕b⊕a=(a⊕a)⊕b=0⊕b=b]
+- a⊕0=a
+- a⊕a=0
+- a⊕b⊕a=(a⊕a)⊕b=0⊕b=b
 
 {% highlight python %}
 from functools import reduce
@@ -118,6 +133,39 @@ missing num的问题解法和single num类似，关键在于原始list index与l
 ### Power of Two,Power of Four
 
 同理，基本操作在于<span class="evidence">n &= n - 1</span>。因为2，只有一个‘1’，清除之后应该为0。同理，对于Power of Four,多加一个判断是否‘1’的位置在奇数为上，用&0b01010101010101010101010101010101来判断。
+
+### Maximum Product of Word Lengths 
+
+这一题是想了很久都没想出来。问题的关键在于将26个字符以二进制32位数做成一个类哈希表。用一个int，32位；而小写字母只有26个，后26位用来表示对应的字符是否存在。然后每次两个int 按位与，如果结果为0，则没有相同字符，则作为候选最大product.
+
+{% highlight python %}
+class Solution:
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        words.sort(key=lambda x: len(x), reverse=True)
+        print(words)
+        bits = [0] * len(words)
+        for i, word in enumerate(words):
+            for c in word:
+                bits[i] |= (1 << (ord(c) - ord('a')))
+
+        max_product = 0
+        for i in range(len(words) - 1):
+            if len(words[i]) ** 2 <= max_product:
+                break
+            for j in range(i + 1, len(words)):
+                if len(words[i]) * len(words[j]) <= max_product:
+                    break
+                if not (bits[i] & bits[j]):
+                    max_product = len(words[i]) * len(words[j])
+        return max_product
+{% endhighlight %}
+
+
+
 
 
 ---
