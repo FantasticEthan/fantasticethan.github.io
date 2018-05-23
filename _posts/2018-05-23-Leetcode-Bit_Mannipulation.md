@@ -18,7 +18,7 @@ description: 对于Bit Manipulation问题的解析与探索
 
 Leetcode中Bit Manipulation类问题，基本都利用位运算解决，效率很高，但是trick没做过的话会很难想。先对典型问题分析，Single Number问题。
 
-#### Especial Elements
+### Single Number问题
 - [Single Number](https://leetcode.com/problems/single-number/)
 - [Single Number II](https://leetcode.com/problems/single-number-ii/)
 - [Single Number III](https://leetcode.com/problems/single-number-iii/)
@@ -42,25 +42,83 @@ for (int i : nums) {
 }
 {% endhighlight %}
 
-算法的第一部xm~x1部分。创造m位进行计数，因为是计数器，所以<span class="evidence">2^m>=k,即 m >= logk</span> 对于32位数，我们就可以利用m个32位整数进行计数，替代到32个m位数来进行计数。
-算法的第二部分mask。计数结束，要是数字到达K之后变为0，这里有两个问题，第一k如何表示，第二如何保证计数器每次都能屏蔽掉k（到达k之后初始化为0）。对于第一个问题，k值得编码同样利用位数来表示，<span class="evidence">y1 & y2 & ... & ym</span> 代表着k的编码状态。对于第二个问题，编码取反与计数器按位取并可以切割掉k（原因？）。
+算法的第一部xm~x1部分。
+
+创造m位进行计数，因为是计数器，所以<span class="evidence">2^m>=k,即 m >= logk</span> 对于32位数，我们就可以利用m个32位整数进行计数，替代到32个m位数来进行计数。
+
+算法的第二部分mask。
+
+计数结束，要是数字到达K之后变为0，这里有两个问题，第一k如何表示，第二如何保证计数器每次都能屏蔽掉k（到达k之后初始化为0）。对于第一个问题，k值得编码同样利用位数来表示，<span class="evidence">y1 & y2 & ... & ym</span> 代表着k的编码状态。对于第二个问题，编码取反与计数器按位取并可以切割掉k（原因？）。
+
 算法的第三部分return。返回值因为其他到达k之后都被切割掉，则只有剩余的出现p次的那个数。
-{% highlight code %}
+{% highlight python %}
 Since p = 3, in binary form p = '011', then p1 = p2 = 1, so we can return either x1 or x2. 
 If p = 4, in binary form p = '100', only p3 = 1, which implies we can only return x3.Or alternatively we can simply return (x1 | x2 | x3).
 {% endhighlight %}
 
----
+于是对于Single Number的前两个问题，给出算法案例。
 
-## Evidence
+1.<span class="evidence">k=2,p=1</span>>
+求出m=1,此时2^m=k。
+{% highlight python %}
+def singleNumber(self, A):
+    return reduce(operator.xor, A)
+{% endhighlight}
 
-You can try the evidence!
+2.<span class="evidence">k=3,p=1</span>>
+{% highlight python %}
+class Solution:
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        x1=0;x2=0;mask=0
+        for i in nums:
+            x2 ^= (x1&i)
+            x1 ^= i
+            mask = ~(x1&x2)
+            x2 &= mask
+            x1 &= mask
+        return x1
+{% endhighlight}
 
-<span class="evidence">Paragraphs can be written like so. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.</span>
+而对于第三类问题有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式。问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
+- [a⊕0=a]
+- [a⊕a=0]
+- [a⊕b⊕a=(a⊕a)⊕b=0⊕b=b]
 
-{% highlight html %}
-<span class="evidence">Paragraphs can be written like so. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.</span>
+{% highlight python %}
+from functools import reduce
+import operator
+class Solution:
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        x_xor_y = reduce(operator.xor,nums)
+        x_xor_y &= -x_xor_y #原码与补码取并，求得右边第一个‘1’
+        result = [0,0] #将两个数以‘1’为flag分成两部分
+        for i in nums:
+             result[bool(i & x_xor_y)] ^= i
+        return result
 {% endhighlight %}
+
+####missing nums问题
+
+missing num的问题解法和single num类似，关键在于原始list index与list value的亦或，亦或操作之后，只剩下没有value的index值，该值为missing num。
+            
+
+### Number Of 1-bits 和 Bitwise AND of Numbers Range
+这个问题的解决方法在于理解<span class="evidence">n &= n - 1</span>>。
+
+当数字减掉1之后在于原数字取按位与，则最后一个‘1’就被清除了。在while n的前提下，清除几次就统计出有几个‘1’。同理，对于第二个问题，求出他们的bitwise and 就是求出他们前几个相同位，在while m<=n的过程中，不断清除最后一个‘1’，剩下的就是他们的相同位。
+
+### Power of Two,Power of Four
+
+同理，基本操作在于<span class="evidence">n &= n - 1</span>。因为2，只有一个‘1’，清除之后应该为0。同理，对于Power of Four,多加一个判断是否‘1’的位置在奇数为上，用&0b01010101010101010101010101010101来判断。
+
 
 ---
 
