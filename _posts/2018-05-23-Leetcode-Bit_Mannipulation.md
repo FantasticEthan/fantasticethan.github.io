@@ -18,18 +18,20 @@ description: 对于Bit Manipulation问题的解析与探索
 
 Leetcode中Bit Manipulation类问题，基本都利用位运算解决，效率很高，但是trick没做过的话会很难想。
 
-###位运算基本操作
+### 位运算基本操作
+
 基本操作是位运算的基础。
-1. 设置交集 A | B
-2. 设置并集 A & B
-3. 减法操作 A & ~B
-4. 非操作 ~A
-5. 设置A的某位为‘1’ A|= 1<<bit
-6. 清除A的某位 A&~(1<<bit)
-7. 测试A的某位是否为0或1 (A & 1 <<bit)!=0
-8. 提取最后一个'1' A&-A(注意这里是补码) 或者 A & ~(A-1) 或者 A^(A&(A-1))
-9. 消除A的最后一个‘1’ A&(A-1)
-10. 获得全‘1’  ~0
+
+- 设置交集 A | B
+- 设置并集 A & B
+- 减法操作 A & ~B
+- 非操作 ~A
+- 设置A的某位为‘1’ A|= 1<<bit
+- 清除A的某位 A&~(1<<bit)
+- 测试A的某位是否为0或1 (A & 1 <<bit)!=0
+- 提取最后一个'1' A&-A(注意这里是补码) 或者 A & ~(A-1) 或者 A^(A&(A-1))
+- 消除A的最后一个‘1’ A&(A-1)
+1- 获得全‘1’  ~0
 
 先对典型问题分析，Single Number问题。
 
@@ -73,14 +75,14 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 
 于是对于Single Number的前两个问题，给出算法案例。
 
-1.<span class="evidence">k=2,p=1</span>>
-求出m=1,此时2^m=k。
+1.<span class="evidence">k=2,p=1</span>
+求出m=1,此时2^m=k
 {% highlight python %}
 def singleNumber(self, A):
     return reduce(operator.xor, A)
 {% endhighlight %}
 
-2.<span class="evidence">k=3,p=1</span>>
+2.<span class="evidence">k=3,p=1</span>求出m=2,此时2^m>k,需要mask
 {% highlight python %}
 class Solution:
     def singleNumber(self, nums):
@@ -126,7 +128,7 @@ missing num的问题解法和single num类似，关键在于原始list index与l
             
 
 ### Number Of 1-bits 和 Bitwise AND of Numbers Range
-这个问题的解决方法在于理解<span class="evidence">n &= n - 1</span>>。
+这个问题的解决方法在于理解<span class="evidence">n &= n - 1</span>
 
 当数字减掉1之后在于原数字取按位与，则最后一个‘1’就被清除了。在while n的前提下，清除几次就统计出有几个‘1’。同理，对于第二个问题，求出他们的bitwise and 就是求出他们前几个相同位，在while m<=n的过程中，不断清除最后一个‘1’，剩下的就是他们的相同位。
 
