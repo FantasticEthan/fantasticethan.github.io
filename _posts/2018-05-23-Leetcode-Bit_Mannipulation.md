@@ -26,12 +26,12 @@ Leetcode中Bit Manipulation类问题，基本都利用位运算解决，效率�
 - 设置并集 A & B
 - 减法操作 A & ~B
 - 非操作 ~A
-- 设置A的某位为‘1’ A|= 1&lt;&lt;bit
-- 清除A的某位 A&~(1&lt;&lt;bit)
-- 测试A的某位是否为0或1 (A & 1 &lt;&lt;bit)!=0
-- 提取最后一个'1' A&-A(注意这里是补码) 或者 A & ~(A-1) 或者 A^(A&(A-1))
-- 消除A的最后一个‘1’ A&(A-1)
-- 获得全‘1’  ~0
+- 设置A的某位为‘1’,A|= 1&lt;&lt;bit
+- 清除A的某位, A&~(1&lt;&lt;bit)
+- 测试A的某位是否为0或1, (A & 1 &lt;&lt;bit)!=0
+- 提取最后一个'1', A&-A(注意这里是补码) 或者 A & ~(A-1) 或者 A^(A&(A-1))
+- 消除A的最后一个‘1’, A&(A-1)
+- 获得全‘1’,  ~0
 
 先对典型问题分析，Single Number问题。
 
@@ -122,9 +122,22 @@ class Solution:
         return result
 {% endhighlight %}
 
-####missing nums问题
+####missing nums 和 Find the Difference 问题
 
 missing num的问题解法和single num类似，关键在于原始list index与list value的亦或，亦或操作之后，只剩下没有value的index值，该值为missing num。
+
+同样是找不同，只要把相同的进行亦或操作消除掉，剩下的就是不同元素。Find Difference多一个字符转换问题。来一个one-line code吧。
+
+{% highlight python %}
+class Solution:
+    def findTheDifference(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        return chr(reduce(operator.xor, map(ord, s), 0) ^ reduce(operator.xor, map(ord, t), 0))
+{% endhighlight %}
             
 
 ### Number Of 1-bits 和 Bitwise AND of Numbers Range
