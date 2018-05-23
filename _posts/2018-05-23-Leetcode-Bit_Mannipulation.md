@@ -1,7 +1,7 @@
 ---
 title: "[Leetcode]Bit Manipulation题目解析与探索"
 layout: post
-date: 2018-05-23 10:412
+date: 2018-05-23 10:41
 image: /assets/images/markdown.jpg
 headerImage: false
 tag:
@@ -9,19 +9,19 @@ tag:
 - Bit Manipulation
 - Solution
 category: blog
-author: fantastic ethan
+author: ethan
 description: 对于Bit Manipulation问题的解析与探索
 # jemoji: '<img class="emoji" title=":ramen:" alt=":ramen:" src="https://assets.github.com/images/icons/emoji/unicode/1f35c.png" height="20" width="20" align="absmiddle">'
 ---
 
 ## 题目:
 
-Leetcode中Bit Manipulation类问题，基本都利用位运算解决，效率很高，但是trick没做过的话会很难想。先对典型问题分析，Single Number问题
+Leetcode中Bit Manipulation类问题，基本都利用位运算解决，效率很高，但是trick没做过的话会很难想。先对典型问题分析，Single Number问题。
 
 #### Especial Elements
 - [Single Number](https://leetcode.com/problems/single-number/)
 - [Single Number II](https://leetcode.com/problems/single-number-ii/)
-- [Single Number III]((https://leetcode.com/problems/single-number-iii/)
+- [Single Number III](https://leetcode.com/problems/single-number-iii/)
 
 Single Number II是第一个问题的拓展，数字出现的次数从2次变成3次。问题可以归纳为：**给定一个整数数组，每个元素都出现k（k > 1）次，除了一个出现p次（p >= 1, p % k != 0），找到那一个**。
 
