@@ -63,7 +63,7 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 {% highlight python %}
 def singleNumber(self, A):
     return reduce(operator.xor, A)
-{% endhighlight}
+{% endhighlight %}
 
 2.<span class="evidence">k=3,p=1</span>>
 {% highlight python %}
@@ -81,7 +81,7 @@ class Solution:
             x2 &= mask
             x1 &= mask
         return x1
-{% endhighlight}
+{% endhighlight %}
 
 而对于第三类问题有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式。问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
 - [a⊕0=a]
