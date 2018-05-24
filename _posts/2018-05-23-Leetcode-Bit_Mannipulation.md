@@ -4,7 +4,6 @@ layout: post
 date: 2018-05-23 10:41
 image: /assets/images/markdown.jpg
 headerImage: false
-mathjax: true
 tag:
 - Leetcode
 - Bit Manipulation
@@ -14,7 +13,11 @@ author: ethan
 description: 对于Bit Manipulation问题的解析与探索
 # jemoji: '<img class="emoji" title=":ramen:" alt=":ramen:" src="https://assets.github.com/images/icons/emoji/unicode/1f35c.png" height="20" width="20" align="absmiddle">'
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
 
 ---
 
@@ -111,9 +114,9 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 
    有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
 	
-	- $a\oplus0=a$
-	- $a\oplusa=0$
-	- $a\oplusb\oplusa=(a\oplusa)\oplusb=0\oplusb=b$
+	- $a \oplus 0 = a$
+	- $a \oplus a = 0$
+	- $a \oplus b \oplus a=(a \oplus a) \oplus b=0 \oplus b = b$
 	
 	{% highlight python %}
 	from functools import reduce
