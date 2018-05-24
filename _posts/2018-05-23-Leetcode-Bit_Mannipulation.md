@@ -129,8 +129,7 @@ class Solution:
         return result
 {% endhighlight %}
 
-
-###missing nums 和 Find the Difference 问题
+### missing nums 和 Find the Difference 问题
 
 missing num的问题解法和single num类似，关键在于原始list index与list value的亦或，亦或操作之后，只剩下没有value的index值，该值为missing num。
 
