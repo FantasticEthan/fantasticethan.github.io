@@ -12,6 +12,9 @@ category: blog
 author: ethan
 description: 对于Bit Manipulation问题的解析与探索
 # jemoji: '<img class="emoji" title=":ramen:" alt=":ramen:" src="https://assets.github.com/images/icons/emoji/unicode/1f35c.png" height="20" width="20" align="absmiddle">'
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 ---
 
 ## Bit Manipulation 位运算
@@ -75,55 +78,58 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 
 于是对于Single Number的前两个问题，给出算法案例。
 
-1. `k=2,p=1`
+1. ` k=2,p=1 `
 
-求出m=1,此时2^m=k
-{% highlight python %}
-def singleNumber(self, A):
-    return reduce(operator.xor, A)
-{% endhighlight %}
+	求出m=1,此时2^m=k
+	{% highlight python %}
+	def singleNumber(self, A):
+	    return reduce(operator.xor, A)
+	{% endhighlight %}
 
-2. `k=3,p=1`
+2. ` k=3,p=1 `
 
-求出m=2,此时2^m>k,需要mask
-{% highlight python %}
-class Solution:
-    def singleNumber(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        x1=0;x2=0;mask=0
-        for i in nums:
-            x2 ^= (x1&i)
-            x1 ^= i
-            mask = ~(x1&x2)
-            x2 &= mask
-            x1 &= mask
-        return x1
-{% endhighlight %}
+	求出m=2,此时2^m>k,需要mask
+	{% highlight python %}
+	class Solution:
+	    def singleNumber(self, nums):
+	        """
+	        :type nums: List[int]
+	        :rtype: int
+	        """
+	        x1=0;x2=0;mask=0
+	        for i in nums:
+	            x2 ^= (x1&i)
+	            x1 ^= i
+	            mask = ~(x1&x2)
+	            x2 &= mask
+	            x1 &= mask
+	        return x1
+	{% endhighlight %}
 
-而对于第三类问题有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式。问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
-- a⊕0=a
-- a⊕a=0
-- a⊕b⊕a=(a⊕a)⊕b=0⊕b=b
+3. 第三类问题。
 
-{% highlight python %}
-from functools import reduce
-import operator
-class Solution:
-    def singleNumber(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
-        x_xor_y = reduce(operator.xor,nums)
-        x_xor_y &= -x_xor_y #原码与补码取并，求得右边第一个‘1’
-        result = [0,0] #将两个数以‘1’为flag分成两部分
-        for i in nums:
-             result[bool(i & x_xor_y)] ^= i
-        return result
-{% endhighlight %}
+   有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
+	
+	- $a\oplus0=a$
+	- $a\oplusa=0$
+	- $a\oplusb\oplusa=(a\oplusa)\oplusb=0\oplusb=b$
+	
+	{% highlight python %}
+	from functools import reduce
+	import operator
+	class Solution:
+	    def singleNumber(self, nums):
+	        """
+	        :type nums: List[int]
+	        :rtype: List[int]
+	        """
+	        x_xor_y = reduce(operator.xor,nums)
+	        x_xor_y &= -x_xor_y #原码与补码取并，求得右边第一个‘1’
+	        result = [0,0] #将两个数以‘1’为flag分成两部分
+	        for i in nums:
+	             result[bool(i & x_xor_y)] ^= i
+	        return result
+	{% endhighlight %}
 
 ####missing nums 和 Find the Difference 问题
 
