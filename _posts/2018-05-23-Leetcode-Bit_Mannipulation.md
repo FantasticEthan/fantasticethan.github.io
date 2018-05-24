@@ -14,7 +14,6 @@ description: 对于Bit Manipulation问题的解析与探索
 
 
 ---
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 ## Bit Manipulation 位运算
 
@@ -129,6 +128,7 @@ class Solution:
              result[bool(i & x_xor_y)] ^= i
         return result
 {% endhighlight %}
+
 
 ###missing nums 和 Find the Difference 问题
 
