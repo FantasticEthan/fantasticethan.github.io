@@ -109,9 +109,9 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 
    有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
 	
-	- $a \oplus 0 = a$
-	- $a \oplus a = 0$
-	- $a \oplus b \oplus a=(a \oplus a) \oplus b=0 \oplus b = b$
+	- $(a\oplus 0=a$
+	- $a\oplus a=0$
+	- $a\oplus b\oplus a= (a\oplus a)\oplus b=0 \oplus b = b$
 	
 {% highlight python %}
 from functools import reduce
