@@ -4,6 +4,7 @@ layout: post
 date: 2018-05-23 10:41
 image: /assets/images/markdown.jpg
 headerImage: false
+mathjax: true
 tag:
 - Leetcode
 - Bit Manipulation
@@ -78,7 +79,7 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 
 于是对于Single Number的前两个问题，给出算法案例。
 
-1. ` k=2,p=1 `
+1. **k=2,p=1**
 
 	求出m=1,此时2^m=k
 	{% highlight python %}
@@ -86,7 +87,7 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 	    return reduce(operator.xor, A)
 	{% endhighlight %}
 
-2. ` k=3,p=1 `
+2. **k=3,p=1**
 
 	求出m=2,此时2^m>k,需要mask
 	{% highlight python %}
@@ -106,7 +107,7 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 	        return x1
 	{% endhighlight %}
 
-3. 第三类问题。
+3. **第三类问题**
 
    有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
 	
