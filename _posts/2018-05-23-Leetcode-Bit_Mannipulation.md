@@ -61,11 +61,11 @@ for (int i : nums) {
 
 算法的第一部xm~x1部分。
 
-创造m位进行计数，因为是计数器，所以<span class="evidence">2^m>=k,即 m >= logk</span> 对于32位数，我们就可以利用m个32位整数进行计数，替代到32个m位数来进行计数。
+创造m位进行计数，因为是计数器，所以`2^m>=k,即 m >= logk` 对于32位数，我们就可以利用m个32位整数进行计数，替代到32个m位数来进行计数。
 
 算法的第二部分mask。
 
-计数结束，要是数字到达K之后变为0，这里有两个问题，第一k如何表示，第二如何保证计数器每次都能屏蔽掉k（到达k之后初始化为0）。对于第一个问题，k值得编码同样利用位数来表示，<span class="evidence">y1 & y2 & ... & ym</span> 代表着k的编码状态。对于第二个问题，编码取反与计数器按位取并可以切割掉k（原因？）。
+计数结束，要是数字到达K之后变为0，这里有两个问题，第一k如何表示，第二如何保证计数器每次都能屏蔽掉k（到达k之后初始化为0）。对于第一个问题，k值得编码同样利用位数来表示，`y1 & y2 & ... & ym` 代表着k的编码状态。对于第二个问题，编码取反与计数器按位取并可以切割掉k（原因？）。
 
 算法的第三部分return。返回值因为其他到达k之后都被切割掉，则只有剩余的出现p次的那个数。
 {% highlight python %}
@@ -75,14 +75,17 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 
 于是对于Single Number的前两个问题，给出算法案例。
 
-1.<span class="evidence">k=2,p=1</span>
+1. `k=2,p=1`
+
 求出m=1,此时2^m=k
 {% highlight python %}
 def singleNumber(self, A):
     return reduce(operator.xor, A)
 {% endhighlight %}
 
-2.<span class="evidence">k=3,p=1</span>求出m=2,此时2^m>k,需要mask
+2. `k=3,p=1`
+
+求出m=2,此时2^m>k,需要mask
 {% highlight python %}
 class Solution:
     def singleNumber(self, nums):
@@ -141,13 +144,13 @@ class Solution:
             
 
 ### Number Of 1-bits 和 Bitwise AND of Numbers Range
-这个问题的解决方法在于理解<span class="evidence">n &= n - 1</span>
+这个问题的解决方法在于理解`n &= n - 1`
 
 当数字减掉1之后在于原数字取按位与，则最后一个‘1’就被清除了。在while n的前提下，清除几次就统计出有几个‘1’。同理，对于第二个问题，求出他们的bitwise and 就是求出他们前几个相同位，在while m<=n的过程中，不断清除最后一个‘1’，剩下的就是他们的相同位。
 
 ### Power of Two,Power of Four
 
-同理，基本操作在于<span class="evidence">n &= n - 1</span>。因为2，只有一个‘1’，清除之后应该为0。同理，对于Power of Four,多加一个判断是否‘1’的位置在奇数为上，用&0b01010101010101010101010101010101来判断。
+同理，基本操作在于`n &= n - 1`。因为2，只有一个‘1’，清除之后应该为0。同理，对于Power of Four,多加一个判断是否‘1’的位置在奇数为上，用&0b01010101010101010101010101010101来判断。
 
 ### Maximum Product of Word Lengths 
 
