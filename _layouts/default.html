@@ -15,16 +15,7 @@ layout: compress
     {% seo %}
     
     {% include favicon.html %}
-    <!-- 数学公式 -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
-    </script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-                           tex2jax: {
-                           skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                           inlineMath: [['$','$']]
-                           }
-                           });
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
     <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ "/feed.xml" }}" />
