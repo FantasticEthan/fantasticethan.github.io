@@ -17,21 +17,8 @@ layout: compress
     {% include favicon.html %}
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-                           tex2jax: {
-                           inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                           processEscapes: true
-                           }
-                           });
-    </script>
-    
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } });
-    </script>
     <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ "/feed.xml" }}" />
-
     <style>
     {% capture scss_sheet %}{% include style.scss %}{% endcapture %}
     {{ scss_sheet | scssify }}
