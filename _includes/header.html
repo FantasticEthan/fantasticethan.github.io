@@ -6,16 +6,6 @@
 
 {% if showHeader == true %}
     <header class="header-home {% if site.animation %}animated{% endif %}">
-        <!-- 数学公式 -->
-        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({
-                               tex2jax: {
-                               skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                               inlineMath: [['$','$']]
-                               }
-                               });
-            </script>
         {% if site.about %}
             <a class="link" href="{{ site.url }}/about">
                 <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
