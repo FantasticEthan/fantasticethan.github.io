@@ -63,11 +63,11 @@ for (int i : nums) {
 
 算法的第一部xm~x1部分。
 
-创造m位进行计数，因为是计数器，所以`2^m>=k,即 m >= logk` 对于32位数，我们就可以利用m个32位整数进行计数，替代到32个m位数来进行计数。
+创造m位进行计数，因为是计数器，所以**2^m>=k,即 m >= logk**对于32位数，我们就可以利用m个32位整数进行计数，替代到32个m位数来进行计数。
 
 算法的第二部分mask。
 
-计数结束，要是数字到达K之后变为0，这里有两个问题，第一k如何表示，第二如何保证计数器每次都能屏蔽掉k（到达k之后初始化为0）。对于第一个问题，k值得编码同样利用位数来表示，`` y1 & y2 & ... & ym `` 代表着k的编码状态。对于第二个问题，编码取反与计数器按位取并可以切割掉k（原因？）。
+计数结束，要是数字到达K之后变为0，这里有两个问题，第一k如何表示，第二如何保证计数器每次都能屏蔽掉k（到达k之后初始化为0）。对于第一个问题，k值得编码同样利用位数来表示，**y1 & y2 & ... & ym** 代表着k的编码状态。对于第二个问题，编码取反与计数器按位取并可以切割掉k（原因？）。
 
 算法的第三部分return。返回值因为其他到达k之后都被切割掉，则只有剩余的出现p次的那个数。
 {% highlight python %}
@@ -109,37 +109,37 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 
    有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
    
-	$$
-	\begin{align}
-	&max\quad \sum\limits_{i=1}^nv_ix_i\\\\
-	&s.t.\quad
-	    \begin{cases}
-	        \sum\limits_{i=1}^nw_ix_i \leq C \\\\
-	        x_i \in\lbrace0,1\rbrace,1 \leq i \leq n
-	    \end{cases}
-	    (*)
-	\end{align}
-	$$
+$$
+\begin{align}
+&max\quad \sum\limits_{i=1}^nv_ix_i\\\\
+&s.t.\quad
+    \begin{cases}
+        \sum\limits_{i=1}^nw_ix_i \leq C \\\\
+        x_i \in\lbrace0,1\rbrace,1 \leq i \leq n
+    \end{cases}
+    (*)
+\end{align}
+$$
 	
-	- \\(a \oplus 0 = a\\)
-	- \\(a \oplus a = 0\\)
-	- \\(a \oplus b \oplus a=(a \oplus a) \oplus b=0 \oplus b = b\\)
+- \\(a \oplus 0 = a\\)
+- \\(a \oplus a = 0\\)
+- \\(a \oplus b \oplus a=(a \oplus a) \oplus b=0 \oplus b = b\\)
 	
 {% highlight python %}
-	from functools import reduce
-	import operator
-	class Solution:
-	    def singleNumber(self, nums):
-	        """
-	        :type nums: List[int]
-	        :rtype: List[int]
-	        """
-	        x_xor_y = reduce(operator.xor,nums)
-	        x_xor_y &= -x_xor_y #原码与补码取并，求得右边第一个‘1’
-	        result = [0,0] #将两个数以‘1’为flag分成两部分
-	        for i in nums:
-	             result[bool(i & x_xor_y)] ^= i
-	        return result
+from functools import reduce
+import operator
+class Solution:
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        x_xor_y = reduce(operator.xor,nums)
+        x_xor_y &= -x_xor_y #原码与补码取并，求得右边第一个‘1’
+        result = [0,0] #将两个数以‘1’为flag分成两部分
+        for i in nums:
+             result[bool(i & x_xor_y)] ^= i
+        return result
 {% endhighlight %}
 
 ###missing nums 和 Find the Difference 问题
