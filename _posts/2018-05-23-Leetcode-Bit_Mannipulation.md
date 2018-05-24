@@ -12,8 +12,9 @@ category: blog
 author: ethan
 description: 对于Bit Manipulation问题的解析与探索
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 ---
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 ## Bit Manipulation 位运算
 
@@ -66,7 +67,7 @@ for (int i : nums) {
 
 算法的第二部分mask。
 
-计数结束，要是数字到达K之后变为0，这里有两个问题，第一k如何表示，第二如何保证计数器每次都能屏蔽掉k（到达k之后初始化为0）。对于第一个问题，k值得编码同样利用位数来表示，`y1 & y2 & ... & ym` 代表着k的编码状态。对于第二个问题，编码取反与计数器按位取并可以切割掉k（原因？）。
+计数结束，要是数字到达K之后变为0，这里有两个问题，第一k如何表示，第二如何保证计数器每次都能屏蔽掉k（到达k之后初始化为0）。对于第一个问题，k值得编码同样利用位数来表示，`` y1 & y2 & ... & ym `` 代表着k的编码状态。对于第二个问题，编码取反与计数器按位取并可以切割掉k（原因？）。
 
 算法的第三部分return。返回值因为其他到达k之后都被切割掉，则只有剩余的出现p次的那个数。
 {% highlight python %}
