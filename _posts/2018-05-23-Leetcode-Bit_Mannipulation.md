@@ -108,22 +108,10 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 - **第三类问题**
 
    有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
-   
-$$
-\begin{align}
-&max\quad \sum\limits_{i=1}^nv_ix_i\\\\
-&s.t.\quad
-    \begin{cases}
-        \sum\limits_{i=1}^nw_ix_i \leq C \\\\
-        x_i \in\lbrace0,1\rbrace,1 \leq i \leq n
-    \end{cases}
-    (*)
-\end{align}
-$$
 	
-- \\(a \oplus 0 = a\\)
-- \\(a \oplus a = 0\\)
-- \\(a \oplus b \oplus a=(a \oplus a) \oplus b=0 \oplus b = b\\)
+	- \\(a \oplus 0 = a\\)
+	- \\(a \oplus a = 0\\)
+	- \\(a \oplus b \oplus a=(a \oplus a) \oplus b=0 \oplus b = b\\)
 	
 {% highlight python %}
 from functools import reduce
@@ -161,13 +149,13 @@ class Solution:
             
 
 ### Number Of 1-bits 和 Bitwise AND of Numbers Range
-这个问题的解决方法在于理解`n &= n - 1`
+这个问题的解决方法在于理解**n &= n - 1**
 
 当数字减掉1之后在于原数字取按位与，则最后一个‘1’就被清除了。在while n的前提下，清除几次就统计出有几个‘1’。同理，对于第二个问题，求出他们的bitwise and 就是求出他们前几个相同位，在while m<=n的过程中，不断清除最后一个‘1’，剩下的就是他们的相同位。
 
 ### Power of Two,Power of Four
 
-同理，基本操作在于`n &= n - 1`。因为2，只有一个‘1’，清除之后应该为0。同理，对于Power of Four,多加一个判断是否‘1’的位置在奇数为上，用&0b01010101010101010101010101010101来判断。
+同理，基本操作在于**n &= n - 1**。因为2，只有一个‘1’，清除之后应该为0。同理，对于Power of Four,多加一个判断是否‘1’的位置在奇数为上，用&0b01010101010101010101010101010101来判断。
 
 ### Maximum Product of Word Lengths 
 
