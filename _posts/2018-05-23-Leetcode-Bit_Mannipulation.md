@@ -77,7 +77,7 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 
 于是对于Single Number的前两个问题，给出算法案例。
 
-1. **k=2,p=1**
+- **k=2,p=1**
 
 	求出m=1,此时2^m=k
 	{% highlight python %}
@@ -85,7 +85,7 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 	    return reduce(operator.xor, A)
 	{% endhighlight %}
 
-2. **k=3,p=1**
+- **k=3,p=1**
 
 	求出m=2,此时2^m>k,需要mask
 	{% highlight python %}
@@ -105,15 +105,27 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 	        return x1
 	{% endhighlight %}
 
-3. **第三类问题**
+- **第三类问题**
 
    有两个元素出现一次，其他所有元素出现两次。首先找出亦或，对于亦或有三个公式问题的关键在于找到亦或之后的码，以最右边的‘1’为flag，将数据分为两部分，因为两个数字不同且都出现一次，所以必定分在这不同的两部分。
+   
+	$$
+	\begin{align}
+	&max\quad \sum\limits_{i=1}^nv_ix_i\\\\
+	&s.t.\quad
+	    \begin{cases}
+	        \sum\limits_{i=1}^nw_ix_i \leq C \\\\
+	        x_i \in\lbrace0,1\rbrace,1 \leq i \leq n
+	    \end{cases}
+	    (*)
+	\end{align}
+	$$
 	
 	- \\(a \oplus 0 = a\\)
 	- \\(a \oplus a = 0\\)
 	- \\(a \oplus b \oplus a=(a \oplus a) \oplus b=0 \oplus b = b\\)
 	
-	{% highlight python %}
+{% highlight python %}
 	from functools import reduce
 	import operator
 	class Solution:
@@ -128,9 +140,9 @@ If p = 4, in binary form p = '100', only p3 = 1, which implies we can only retur
 	        for i in nums:
 	             result[bool(i & x_xor_y)] ^= i
 	        return result
-	{% endhighlight %}
+{% endhighlight %}
 
-####missing nums 和 Find the Difference 问题
+###missing nums 和 Find the Difference 问题
 
 missing num的问题解法和single num类似，关键在于原始list index与list value的亦或，亦或操作之后，只剩下没有value的index值，该值为missing num。
 
