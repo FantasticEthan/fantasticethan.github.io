@@ -14,7 +14,7 @@ picture: assets/images/profile.jpg
 # and specify source (external or local).
 resume: true
 resume-external: true
-resume-url: https://google.com/?q=my+resume
+resume-url: https://google.com/?q=fantastic+ethan
 
 url: https://fantasticethan.github.io
 # your url: http://USERNAME.github.io
@@ -35,7 +35,7 @@ permalink: /:title/
 
 # if you don't have any of social below, comment the line
 #facebook: myfacebook
-#twitter: mytwitter
+twitter: Ethan62886447
 # google: mygoogle
 instagram: ethan_8precepts
 # pinterest: mypinterest
