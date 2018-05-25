@@ -34,9 +34,11 @@ Leetcode中Bit Manipulation类问题，基本都利用位运算解决，效率�
 - 消除A的最后一个‘1’, A&(A-1)
 - 获得全‘1’,  ~0
 
+---
+
 先对典型问题分析，Single Number问题。
 
-### Single Number问题
+### Single Number
 - [Single Number](https://leetcode.com/problems/single-number/)
 - [Single Number II](https://leetcode.com/problems/single-number-ii/)
 - [Single Number III](https://leetcode.com/problems/single-number-iii/)
@@ -129,11 +131,13 @@ class Solution:
         return result
 {% endhighlight %}
 
-### missing nums 和 Find the Difference 问题
+### Missing nums , Find the Difference，Set Mismatch
 
 missing num的问题解法和single num类似，关键在于原始list index与list value的亦或，亦或操作之后，只剩下没有value的index值，该值为missing num。
 
 同样是找不同，只要把相同的进行亦或操作消除掉，剩下的就是不同元素。Find Difference多一个字符转换问题。来一个one-line code吧。
+
+Set Mismatch同样是找不同，先利用亦或找到不同的两个值。然后判断是否存在原始数组，从而调换顺序。
 
 {% highlight python %}
 class Solution:
@@ -147,7 +151,7 @@ class Solution:
 {% endhighlight %}
             
 
-### Number Of 1-bits 和 Bitwise AND of Numbers Range
+### Number Of 1-bits ,Bitwise AND of Numbers Range
 这个问题的解决方法在于理解**n &= n - 1**
 
 当数字减掉1之后在于原数字取按位与，则最后一个‘1’就被清除了。在while n的前提下，清除几次就统计出有几个‘1’。同理，对于第二个问题，求出他们的bitwise and 就是求出他们前几个相同位，在while m<=n的过程中，不断清除最后一个‘1’，剩下的就是他们的相同位。
@@ -187,9 +191,68 @@ class Solution:
 {% endhighlight %}
 
 
+### Maximum XOR of Two Numbers in an Array 
 
+问题要求出两个数最大的XOR。直接遍历，存储最大XOR效率是$O(n)$。
+利用亦或的特性，$a \oplus b = c$,则$a \oplus c = b$。同理，亦或最大应该是此位置上的bit为1。于是，可以推得$a \oplus b=1$,则$b \oplus 1 =a$。如果值不在set里面，则肯定为0。
 
+{% highlight python %}
+class Solution:
+    def findMaximumXOR(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in reversed(range(32)):
+            result <<= 1
+            prefixes = set()
+            for n in nums:
+                prefixes.add(n >> i)
+            for p in prefixes:
+                if (result | 1) ^ p in prefixes:
+                    result += 1
+                    break
+        return result 
 
+{% endhighlight %}
+
+### Hamming Distance,Total Hamming Distance
+
+两道题都是求汉明距离。对于第一题，汉明距离求出亦或之后计算bit为1的数量很容易求出。对于总汉明距离，如何降低时间复杂度是关键。因为bit的值都为1和0，所以对于数字的每个bit位置，只要计算bit为1和0的数量相乘，就是当前位置的总汉明距离。之后，对于32个bit位置求和。即得总汉明距离。One Line Code。
+
+{% highlight python %}
+class Solution:
+    def totalHammingDistance(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(b.count('0') * b.count('1') for b in zip(*map('{:032b}'.format, nums)))
+{% endhighlight %}     
+                
+### Binary Number with Alternating Bits
+
+这一题本来是很简单的问题。但是做了很久。问题在于判断当前bit位置之后，下一个位置的0到1的变化我用了补码(引以为戒)。应该用亦或。这样可以把0替换成1，把1替换成0。问题不过是位置的逐个判断。判断当前位置是否和上一位仙童。贴上代码吧。
+
+{% highlight python %}
+class Solution:
+    def hasAlternatingBits(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        d = n&1
+        while (n&1)==d:
+            d^=1
+            n >>=1
+        return n==0
+{% endhighlight %}  
+        
 ---
+
+### 小结
+
+位运算的题目主要在于对原始数据之后转换成32位bit后进行位运算。操作主要是求交集，并集，选取哪一位，选取最后一个bit为1的数之类。理解0，1关系是关键。还有一个小技巧，很多位运算的题可以利用求和之后，加加减减，才提取出需要的值。在想不出来的时候可以尝试下。总共做了22题。有些没放出来，主要是bit位置判断的，例如UTF-8 Validation和Binary Watch。
 
 
