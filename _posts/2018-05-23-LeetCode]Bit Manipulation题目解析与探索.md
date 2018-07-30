@@ -6,8 +6,6 @@ image: /assets/images/markdown.jpg
 headerImage: false
 tag:
 - Leetcode
-- Bit Manipulation
-- Solution
 category: blog
 author: ethan
 description: 对于Bit Manipulation问题的解析与探索

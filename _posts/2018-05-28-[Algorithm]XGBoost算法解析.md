@@ -1,13 +1,12 @@
 ---
-title: "XGBoost模型回顾与知识整理"
+title: "[Algorithm]XGBoost算法解析"
 layout: post
 date: 2018-05-28 10:08
 image: /assets/images/markdown.jpg
 headerImage: false
 tag:
-- XGBoost
-- Knowledge
-- Mathematical Derivation
+- Algorithm
+- Machine Learning
 category: blog
 author: ethan
 description: 对于XGBoost进行知识回顾和相关资料整理

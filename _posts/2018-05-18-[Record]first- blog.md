@@ -5,7 +5,7 @@ date: 2018-05-18 13:03
 image: /assets/images/markdown.jpg
 headerImage: false
 tag:
-- The first time
+- Record
 - Blog
 category: blog
 author: ethan
